@@ -8,7 +8,7 @@ import (
 func main() {
 	arguments := os.Args
 	var total, nInts, nFloats int
-	invalid := make([]string, 0)
+	invalid := make([]string, 0, 3)
 	for _, k := range arguments[1:] {
 		_, err := strconv.Atoi(k)
 		if err == nil {
