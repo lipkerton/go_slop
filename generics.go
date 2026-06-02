@@ -3,7 +3,7 @@ import "fmt"
 
 func Print[T any](s []T) {
 	for _, value := range s {
-		fmt.Print(v, " ")
+		fmt.Print(value, " ")
 	}
 	fmt.Println()
 }
