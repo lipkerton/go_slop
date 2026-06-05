@@ -6,6 +6,10 @@ import (
 
 func main() {
 	var a models.Entity
-	a = models.Entity{Name: "Slavoy", Surname: "Zijek", tel: "dfsdfsdf"}
+	var b *models.Entity
+	a = models.Entity{Name: "Slavoy", Surname: "Zijek"}
+	b = &a
 	fmt.Println(a)
+	fmt.Printf("%p\n", &a)
+	fmt.Printf("%p\n", b)
 }
