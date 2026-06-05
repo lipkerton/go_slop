@@ -1,6 +1,8 @@
 package main
 import (
 	"fmt"
+	"os"
+	"path"
 )
 
 type Entry struct {
@@ -9,20 +11,49 @@ type Entry struct {
 	Tel string
 }
 
-var data []Entry{}
+var data []Entry
 
 func search(key string) *Entry {
 	for index, value := range data {
 		if value.Surname == key {
-			return &data[i]
+			return &data[index]
 		}
 	}
 	return nil
 }
 
+func list() {
+	for _, v := range data {
+		fmt.Println(v)
+	}
+}
+
 func main() {
-	var a []Entry
-	a = []Entry{Entry{Name: "Peter", Surname: "Tuturin", Tel: "1231345"},
-		Entry{Name: "Olesya", Surname: "Tuturina", Tel: "131235"}}
-	fmt.Println(a)
+	arguments := os.Args
+	if len(arguments) == 1 {
+		exe := path.Base(arguments[0])
+		fmt.Println("Usage: %s search|list <arguments>\n", exe)
+		return
+	}
+	data = append(data, Entry{"Mihalis", "Tsoukalos", "1231231"})
+	data = append(data, Entry{"Mary", "Doe", "456323465"})
+	data = append(data, Entry{"John", "Black", "1230123"})
+
+	switch arguments[1] {
+	case "search":
+		if len(arguments) != 3 {
+			fmt.Println("Usage: search Surname")
+			return
+		}
+		result := search(arguments[2])
+		if result == nil {
+			fmt.Println("Entry not found:", arguments[2])
+			return
+		}
+		fmt.Println(*result)
+	case "list":
+		list()
+	default:
+		fmt.Println("Not valid option!")
+	}
 }
