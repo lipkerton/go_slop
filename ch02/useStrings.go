@@ -15,5 +15,7 @@ func main() {
 	t := string.Fields("String with spaces!")
 	fmt.Println("Fields: %v\n", t)
 
-	fmt.Printf("%s\n", strings.Split("abcd efg", ""))	
+	fmt.Printf("%s\n", strings.Split("abcd efg", ""))
+	
+	fmt.Printf("%s\n", strings.Replace("abcd efg"))
 }
