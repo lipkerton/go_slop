@@ -14,6 +14,12 @@ func main() {
 	a.Val3 = "dfsdfsd"
 	fmt.Println(a)
 
+	var b, c Entity1
+	b = Entity1{"H", "M", "Z"}
+	c = Entity1{Val1: "H", Val2: "M", Val3: "Z"}
+	fmt.Println(b)
+	fmt.Println(c)
+
 	var p *Entity1
 	p = &a
 	fmt.Println(p.Val1)
