@@ -1,5 +1,6 @@
 package main
 import (
+	"strings"
 	"fmt"
 )
 
@@ -15,4 +16,8 @@ func main() {
 		fmt.Printf("%c", v)
 	}
 	fmt.Println()
+
+	a := "asdadas_asdsad_adsdasd"
+	fmt.Println(strings.SplitAfter(a, "_"))
+	
 }
