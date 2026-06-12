@@ -3,6 +3,8 @@ import (
 	"fmt"
 	"os"
 	"path"
+	"strconv"
+	"math/rand"
 )
 
 type Entry struct {
@@ -12,6 +14,18 @@ type Entry struct {
 }
 
 var data []Entry
+
+func getString(len int) string {
+	b := make([]byte, len, len)
+	for i := 0; i < len; i++ {
+		b = append(b, byte(rand.Intn(90 - 65) + 65))
+	}
+	return string(b)
+}
+
+func random(min, max int) int {
+	return rand.Intn(max - min) + min
+}
 
 func search(key string) *Entry {
 	for index, value := range data {
@@ -28,6 +42,17 @@ func list() {
 	}
 }
 
+func populate(n int) []Entry {
+	s := make([]Entry, n, n)
+	for i := 0; i < n; i++ {
+		name := getString(4)
+		surname := getString(5)
+		b := strconv.Itoa(random(100, 199))
+		s[i] = Entry{name, surname, b}
+	}
+	return s
+}
+
 func main() {
 	arguments := os.Args
 	if len(arguments) == 1 {
@@ -35,10 +60,8 @@ func main() {
 		fmt.Println("Usage: %s search|list <arguments>\n", exe)
 		return
 	}
-	data = append(data, Entry{"Mihalis", "Tsoukalos", "1231231"})
-	data = append(data, Entry{"Mary", "Doe", "456323465"})
-	data = append(data, Entry{"John", "Black", "1230123"})
 
+	data = populate(10)
 	switch arguments[1] {
 	case "search":
 		if len(arguments) != 3 {
